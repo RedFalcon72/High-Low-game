@@ -14,7 +14,6 @@ body {
   padding: 20px;
 }
 
-/* カードを横に並べる魔法 */
 .card-area {
   display: flex;
   justify-content: center;
@@ -22,25 +21,23 @@ body {
   margin: 30px 0;
 }
 
-/* カード自体のスタイル */
 .card {
   width: 140px;
   height: auto;
-  /* ドット絵をくっきり見せる（モダンな指定よ） */
+
   image-rendering: pixelated;
   border-radius: 10px;
-  /* 影をつけて立体感を出す */
+
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* ゴージャスなボタン */
 .btn {
   padding: 12px 30px;
   font-size: 1.2rem;
   font-weight: bold;
   margin: 0 10px;
   cursor: pointer;
-  background-color: #d4af37; /* ゴールド */
+  background-color: #d4af37;
   color: #1a1a1a;
   border: none;
   border-radius: 5px;
