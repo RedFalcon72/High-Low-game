@@ -1,13 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>high-low-game</title>
+    <title>High & Low</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
+
   <body>
-    <div id="app"></div>
+    <div id="game-container">
+      <header>
+        <h1>High & Low</h1>
+        <p id="message">High or Low?</p>
+      </header>
+
+      <main>
+        <div class="card-area">
+          <div class="card-wrapper">
+            <img
+              src="/images/card_back.png"
+              id="before-card"
+              class="card"
+              alt="Before Card"
+            />
+          </div>
+
+          <div class="card-wrapper">
+            <p>結果</p>
+            <img
+              src="/images/card_back.png"
+              id="after-card"
+              class="card"
+              alt="After Card"
+            />
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="high-btn" class="btn">HIGH</button>
+          <button id="low-btn" class="btn">LOW</button>
+        </div>
+      </main>
+
+      <footer>
+        <p>SCORE: <span id="score">0</span></p>
+      </footer>
+    </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
