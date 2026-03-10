@@ -35,12 +35,12 @@ function getRandomCard() {
     value: rank.value,
     imagePath: `/images/card_${suit}_${rank.label}.png`,
   };
-}
+} //ランダムなカードを生成する関数
 
 function showCard(cardElement, card) {
   cardElement.src = card.imagePath;
   cardElement.alt = `${card.suit} ${card.rankLabel}`;
-}
+} //カードの画像を表示する関数
 
 function resetRound() {
   currentCard = getRandomCard();
@@ -48,32 +48,47 @@ function resetRound() {
   afterCardImg.src = "/images/card_back.png";
   afterCardImg.alt = "Hidden card";
   message.textContent = "High or Low?";
-}
+} //新しいラウンドを開始する関数
 
 function judgeRound(playerChoice) {
-  const nextCard = getRandomCard();
+  let nextCard;
+  while (true) {
+    nextCard = getRandomCard(); //次のカードを生成
+    if (
+      nextCard.value !== currentCard.value ||
+      nextCard.suit !== currentCard.suit
+    ) {
+      break;
+    }
+  } //最初のカードと同じカードが出ないようにする
+
   showCard(afterCardImg, nextCard);
 
   if (nextCard.value === currentCard.value) {
-    message.textContent = "同じ数字! 引き分け";
+    message.textContent = "draw";
   } else {
     const isCorrect =
       (playerChoice === "high" && nextCard.value > currentCard.value) ||
       (playerChoice === "low" && nextCard.value < currentCard.value);
 
     if (isCorrect) {
-      score += 1;
-      scoreElement.textContent = String(score);
-      message.textContent = "正解!";
+      score++;
+      scoreElement.textContent = score;
+      message.textContent = "win";
     } else {
       score = 0;
-      scoreElement.textContent = "0";
-      message.textContent = "不正解... スコアをリセット";
+      scoreElement.textContent = 0;
+      message.textContent = "lose";
     }
   }
 
   currentCard = nextCard;
+  setTimeout(() => {
+    resetRound();
+  }, 2000);
 }
+
+resetRound(); //最初のラウンドを開始
 
 highButton.addEventListener("click", () => {
   judgeRound("high");
@@ -82,5 +97,3 @@ highButton.addEventListener("click", () => {
 lowButton.addEventListener("click", () => {
   judgeRound("low");
 });
-
-resetRound();
