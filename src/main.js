@@ -33,7 +33,7 @@ function getRandomCard() {
     suit,
     rankLabel: rank.label,
     value: rank.value,
-    imagePath: `/images/card_${suit}_${rank.label}.png`,
+    imagePath: `./images/card_${suit}_${rank.label}.png`,
   };
 } //ランダムなカードを生成する関数
 
@@ -45,7 +45,7 @@ function showCard(cardElement, card) {
 function resetRound() {
   currentCard = getRandomCard();
   showCard(beforeCardImg, currentCard);
-  afterCardImg.src = "/images/card_back.png";
+  afterCardImg.src = "./images/card_back.png";
   afterCardImg.alt = "Hidden card";
   message.textContent = "High or Low?";
 } //新しいラウンドを開始する関数
