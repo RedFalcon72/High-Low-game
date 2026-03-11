@@ -52,6 +52,10 @@ function resetRound() {
 
 function judgeRound(playerChoice) {
   let nextCard;
+  //ボタンを無効にして、プレイヤーが複数回クリックできないようにする
+  highButton.disabled = true;
+  lowButton.disabled = true;
+
   while (true) {
     nextCard = getRandomCard(); //次のカードを生成
     if (
@@ -64,13 +68,13 @@ function judgeRound(playerChoice) {
 
   showCard(afterCardImg, nextCard);
 
+  //プレイヤーの選択と次のカードを比較して勝敗を判定
   if (nextCard.value === currentCard.value) {
     message.textContent = "draw";
   } else {
     const isCorrect =
       (playerChoice === "high" && nextCard.value > currentCard.value) ||
       (playerChoice === "low" && nextCard.value < currentCard.value);
-
     if (isCorrect) {
       score++;
       scoreElement.textContent = score;
@@ -82,10 +86,11 @@ function judgeRound(playerChoice) {
     }
   }
 
-  currentCard = nextCard;
   setTimeout(() => {
     resetRound();
-  }, 2000);
+    highButton.disabled = false;
+    lowButton.disabled = false;
+  }, 2000); //2秒後に次のラウンドを開始し、ボタンを有効にする
 }
 
 resetRound(); //最初のラウンドを開始
